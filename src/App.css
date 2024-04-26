@@ -1,0 +1,310 @@
+@font-face {
+  font-weight: 400;
+  font-family: "Raleway";
+  src: url("./assets/fonts/Raleway-Regular.woff2");
+}
+
+:root {
+  --black: #0d0d0d;
+  --white: #fff;
+  --grey: #767676;
+  --pink: #f2a7ad;
+  --purple: #9a11ee;
+  --error: #e80e0e;
+  --success: #19e307;
+  --gradient: linear-gradient(#9a11ee, #f2a7ad);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  padding: 6px 35px;
+  font-size: 24px;
+  background-color: var(--white);
+  color: var(--purple);
+  border-image-source: var(--gradient);
+  border-image-slice: 2;
+  border-image-width: 2px;
+}
+
+.btn-mini {
+  font-size: 16px;
+}
+
+.link {
+  color: var(--white);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: var(--purple);
+}
+
+body {
+  font-family: "Raleway";
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  margin: 90px 0;
+}
+
+.p-v-30 {
+  padding: 30px 0;
+}
+
+.flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-c {
+  align-items: center;
+}
+
+.flex-jcc {
+  justify-content: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-bl {
+  align-items: baseline;
+}
+
+.flex-30 {
+  display: flex;
+  gap: 30px;
+}
+
+.flex-20 {
+  display: flex;
+  gap: 20px;
+}
+
+.flex-10 {
+  display: flex;
+  gap: 10px;
+}
+
+.flex-5 {
+  display: flex;
+  gap: 5px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 20px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 20px;
+}
+
+.bg-black {
+  background-color: var(--black);
+}
+
+.c-grey {
+  color: var(--grey);
+}
+
+.c-black {
+  color: var(--black);
+}
+
+.c-purple {
+  color: var(--purple);
+}
+
+.c-white {
+  color: var(--white);
+}
+
+.header {
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.category {
+  position: relative;
+  height: 280px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--gradient);
+  color: var(--white);
+  text-align: center;
+  font-size: 28px;
+  transition: background-image 0.3s ease-in-out;
+}
+
+.category:hover {
+  background-image: linear-gradient(#9a11ee, #9a11ee);
+}
+
+.pagination {
+  font-size: 20px;
+  color: var(--grey);
+  transition: color 0.3s ease-in-out;
+}
+
+.pagination:hover {
+  color: var(--purple);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    margin: 70px 0;
+    gap: 70px;
+  }
+
+  .grid-2--wrap {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .benefits-img {
+    flex-shrink: 0;
+    width: 90px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-4--nwr {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .partners-name {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .grid-2--wr {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  .partners-name {
+    font-size: 16px;
+  }
+
+  .category {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .wrapper {
+    margin: 50px 0;
+    gap: 50px;
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .benefits {
+    flex-direction: column;
+  }
+
+  .benefits-img {
+    flex-shrink: 0;
+    width: 60px;
+  }
+
+  .partners {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .category {
+    height: 140px;
+  }
+}
