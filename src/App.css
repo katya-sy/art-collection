@@ -25,6 +25,10 @@
   font-size: 16px;
 }
 
+*:focus {
+  outline: solid 1px var(--purple);
+}
+
 button {
   border: none;
   background-color: transparent;
@@ -56,6 +60,7 @@ img {
 }
 
 .btn {
+  width: 100%;
   padding: 6px 35px;
   font-size: 24px;
   background-color: var(--white);
@@ -67,6 +72,37 @@ img {
 
 .btn-mini {
   font-size: 16px;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--grey);
+  padding: 10px;
+  font-family: inherit;
+}
+
+input::placeholder {
+  color: var(--grey);
+}
+
+textarea {
+  width: 100%;
+  height: 156px;
+  padding: 10px;
+  font-family: inherit;
+  resize: none;
+}
+
+.input-error {
+  border: 1px solid var(--error);
+  outline: none;
+}
+
+.error {
+  position: absolute;
+  top: -17px;
+  font-size: 14px;
+  color: var(--error);
 }
 
 .link {
@@ -123,6 +159,16 @@ body {
   align-items: baseline;
 }
 
+.flex-60 {
+  display: flex;
+  gap: 60px;
+}
+
+.flex-45 {
+  display: flex;
+  gap: 45px;
+}
+
 .flex-30 {
   display: flex;
   gap: 30px;
@@ -153,6 +199,22 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 40px 20px;
+}
+
+.grid-5-3 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 40px 20px;
+}
+
+.grid-5-3 > div:nth-child(1) {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.grid-5-3 > div:nth-child(2) {
+  grid-column-start: 6;
+  grid-column-end: 9;
 }
 
 .bg-black {
