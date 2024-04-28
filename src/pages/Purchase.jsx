@@ -47,19 +47,34 @@ export const Purchase = () => {
                   />
                   <div className="grid-4">
                     <Input
-                      register={register("entrance")}
+                      register={register("entrance", {
+                        pattern: {
+                          value: /^\d/,
+                          message: "Только цифры",
+                        },
+                      })}
                       placeholder={"Подъезд"}
                       aria-invalid={errors.entrance}
                       error={errors.entrance}
                     />
                     <Input
-                      register={register("floor")}
+                      register={register("floor", {
+                        pattern: {
+                          value: /^\d/,
+                          message: "Только цифры",
+                        },
+                      })}
                       placeholder={"Этаж"}
                       aria-invalid={errors.floor}
                       error={errors.floor}
                     />
                     <Input
-                      register={register("apartment")}
+                      register={register("apartment", {
+                        pattern: {
+                          value: /^\d/,
+                          message: "Только цифры",
+                        },
+                      })}
                       placeholder={"Квартира"}
                       aria-invalid={errors.apartment}
                       error={errors.apartment}
@@ -94,10 +109,26 @@ export const Purchase = () => {
                   </button>
                 </div>
               </div>
-              <div>
+              <div className="flex-30 flex-col">
                 <h2>Дата и время доставки</h2>
-                <Select register={register("date", { required: true })} />
-                <Select register={register("time", { required: true })} />
+                <div className="flex-20">
+                  <Select
+                    defaultValue="default"
+                    register={register("date", { required: true })}
+                  >
+                    <option value="default" disabled>
+                      Дата
+                    </option>
+                  </Select>
+                  <Select
+                    defaultValue="default"
+                    register={register("time", { required: true })}
+                  >
+                    <option value="default" disabled>
+                      Интервал времени
+                    </option>
+                  </Select>
+                </div>
               </div>
               <div className="flex-30 flex-col">
                 <h2>Оплата</h2>

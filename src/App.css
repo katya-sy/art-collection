@@ -93,6 +93,13 @@ textarea {
   resize: none;
 }
 
+select {
+  width: 100%;
+  border: 1px solid var(--grey);
+  padding: 10px;
+  font-family: inherit;
+}
+
 .input-error {
   border: 1px solid var(--error);
   outline: none;
