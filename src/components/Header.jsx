@@ -63,7 +63,10 @@ export const Header = () => {
               <li>
                 <button
                   className="link"
-                  onClick={() => setIsOpenModal((prev) => !prev)}
+                  onClick={() => {
+                    setIsOpenMenu((prev) => !prev);
+                    setIsOpenModal((prev) => !prev);
+                  }}
                 >
                   Войти
                 </button>
