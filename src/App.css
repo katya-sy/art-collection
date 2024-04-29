@@ -35,6 +35,7 @@ button {
   font-size: inherit;
   font-family: inherit;
   cursor: pointer;
+  outline: none;
 }
 
 h2 {
@@ -72,6 +73,20 @@ img {
 
 .btn-mini {
   font-size: 16px;
+}
+
+.btn-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon img {
+  width: 20px;
+  height: 20px;
 }
 
 input {
@@ -277,9 +292,30 @@ body {
   color: var(--purple);
 }
 
+.menu-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+
+.menu {
+  background-color: var(--white);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 25%);
+}
+
+.search-wrapper {
+  align-items: stretch;
+  width: 75%;
+}
+
 @media (max-width: 1200px) {
   .container {
     padding: 0 40px;
+  }
+
+  .error {
+    font-size: 12px;
   }
 }
 
@@ -306,6 +342,25 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  .grid-4-inputs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-5-3 {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 80px;
+  }
+
+  .grid-5-3 > div:nth-child(1) {
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+
+  .grid-5-3 > div:nth-child(2) {
+    grid-column-start: 1;
+    grid-column-end: 1;
+  }
+
   .partners-name {
     font-size: 20px;
   }
@@ -314,6 +369,10 @@ body {
 @media (max-width: 768px) {
   .grid-4 {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .grid-4-inputs {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .grid-2--wr {
@@ -343,6 +402,10 @@ body {
   .category {
     font-size: 20px;
   }
+
+  .search-wrapper {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -357,6 +420,17 @@ body {
 
   .grid-2 {
     grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .grid-2-nwr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .grid-4-inputs {
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
@@ -375,5 +449,20 @@ body {
 
   .category {
     height: 140px;
+  }
+
+  .btns {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+  .menu-wrapper {
+    height: calc(100vh + 150px);
+  }
+
+  .btn {
+    padding: 6px 20px;
   }
 }

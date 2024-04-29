@@ -45,7 +45,7 @@ export const Purchase = () => {
                     aria-invalid={errors.address}
                     error={errors.address}
                   />
-                  <div className="grid-4">
+                  <div className="grid-4 grid-4-inputs">
                     <Input
                       register={register("entrance", {
                         pattern: {
@@ -100,7 +100,7 @@ export const Purchase = () => {
                   <h4>Иванов Иван</h4>
                   <h4>+7 999 999 99 99</h4>
                 </div>
-                <div className="flex-20">
+                <div className="flex-20 btns">
                   <button type="button" className="btn btn-mini">
                     Добавить телефон
                   </button>
@@ -111,7 +111,7 @@ export const Purchase = () => {
               </div>
               <div className="flex-30 flex-col">
                 <h2>Дата и время доставки</h2>
-                <div className="flex-20">
+                <div className="flex-20 btns">
                   <Select
                     defaultValue="default"
                     register={register("date", { required: true })}
@@ -177,18 +177,21 @@ export const Purchase = () => {
             <div className="flex-45 flex-col">
               <div className="flex-30 flex-col">
                 <h2>Заказ</h2>
-                <div className="flex-20 flex-c">
+                <div
+                  className="flex-20 flex-c"
+                  style={{ flexWrap: "wrap", rowGap: 5 }}
+                >
                   <picture style={{ maxWidth: 200 }}>
                     <img src={product.img} alt={product.title} />
                   </picture>
                   <h3>{product.price} ₽</h3>
                 </div>
-                <div className="grid-2">
+                <div className="grid-2 grid-2-nwr">
                   <h3>Доставка</h3>
                   <h3>{delieveryPrice} ₽</h3>
                 </div>
               </div>
-              <div className="grid-2">
+              <div className="grid-2 grid-2-nwr">
                 <h3>Итого</h3>
                 <h2 className="c-purple">
                   {`${
