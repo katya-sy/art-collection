@@ -38,6 +38,10 @@ export const Header = () => {
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
 
+  isOpenModal || isOpenRegModal
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+
   return (
     <div style={{ position: "relative" }}>
       <div className="bg-black p-v-30">
@@ -64,7 +68,7 @@ export const Header = () => {
                 <button
                   className="link"
                   onClick={() => {
-                    setIsOpenMenu((prev) => !prev);
+                    setIsOpenMenu(false);
                     setIsOpenModal((prev) => !prev);
                   }}
                 >

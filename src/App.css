@@ -69,6 +69,7 @@ img {
   border-image-source: var(--gradient);
   border-image-slice: 2;
   border-image-width: 2px;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-mini {
@@ -89,11 +90,17 @@ img {
   height: 20px;
 }
 
+.btn:hover {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
 input {
   width: 100%;
   border: 1px solid var(--grey);
   padding: 10px;
   font-family: inherit;
+  transition: all 0.3s ease-in-out;
 }
 
 input::placeholder {
@@ -106,6 +113,12 @@ textarea {
   padding: 10px;
   font-family: inherit;
   resize: none;
+  transition: all 0.3s ease-in-out;
+}
+
+input:hover,
+textarea:hover {
+  border-color: var(--purple);
 }
 
 select {
@@ -113,6 +126,12 @@ select {
   border: 1px solid var(--grey);
   padding: 10px;
   font-family: inherit;
+  transition: all 0.3s ease-in-out;
+}
+
+select:hover {
+  background-color: var(--purple);
+  color: var(--white);
 }
 
 .input-error {
@@ -319,9 +338,11 @@ body {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 25%);
+  z-index: 1;
 }
 
 .modal-content {
+  position: relative;
   width: 420px;
   padding: 30px;
   display: flex;
@@ -329,6 +350,12 @@ body {
   align-items: center;
   gap: 40px;
   background-color: var(--white);
+}
+
+.close-modal {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -428,6 +455,10 @@ body {
   .search-wrapper {
     width: 100%;
   }
+
+  .modal-content {
+    gap: 30px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -476,6 +507,16 @@ body {
   .btns {
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .modal-content {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
 
