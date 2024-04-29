@@ -309,6 +309,28 @@ body {
   width: 75%;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 25%);
+}
+
+.modal-content {
+  width: 420px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  background-color: var(--white);
+}
+
 @media (max-width: 1200px) {
   .container {
     padding: 0 40px;

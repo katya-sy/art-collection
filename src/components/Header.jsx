@@ -5,6 +5,10 @@ import { Input } from "./UI/Input";
 import searchImg from "../assets/img/search.svg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Portal from "./UI/Portal";
+import { Modal } from "./UI/Modal";
+import { AuthForm } from "./AuthForm";
+import { RegForm } from "./RegForm";
 
 export const Header = () => {
   const categories = [
@@ -18,6 +22,8 @@ export const Header = () => {
     "Абстрактное искусство",
   ];
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenRegModal, setIsOpenRegModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
@@ -27,8 +33,6 @@ export const Header = () => {
     navigate("/list");
     setIsOpenMenu(false);
   };
-
-  const toggleMenu = (prev) => setIsOpenMenu(!prev);
 
   isOpenMenu && window.innerWidth > 460
     ? (document.body.style.overflow = "hidden")
@@ -44,7 +48,10 @@ export const Header = () => {
           <nav>
             <ul className="flex-20">
               <li>
-                <button className="link" onClick={() => toggleMenu(isOpenMenu)}>
+                <button
+                  className="link"
+                  onClick={() => setIsOpenMenu((prev) => !prev)}
+                >
                   Поиск
                 </button>
               </li>
@@ -54,9 +61,12 @@ export const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link className="link" to="">
+                <button
+                  className="link"
+                  onClick={() => setIsOpenModal((prev) => !prev)}
+                >
                   Войти
-                </Link>
+                </button>
               </li>
             </ul>
           </nav>
@@ -66,9 +76,8 @@ export const Header = () => {
         <div
           className="menu-wrapper"
           onClick={(e) => {
-            if (e.target.className === "menu-wrapper") {
-              toggleMenu(isOpenMenu);
-            }
+            if (e.target.className === "menu-wrapper")
+              setIsOpenMenu((prev) => !prev);
           }}
         >
           <div className="p-v-30 menu">
@@ -95,6 +104,42 @@ export const Header = () => {
           </div>
         </div>
       )}
+      <Modal isOpen={isOpenModal} setModal={setIsOpenModal}>
+        <h3>Авторизация</h3>
+        <AuthForm setModal={setIsOpenModal} />
+        <div className="flex-sb" style={{ width: "100%" }}>
+          <button
+            className="link c-grey"
+            onClick={() => {
+              setIsOpenModal((prev) => !prev);
+              setIsOpenRegModal((prev) => !prev);
+            }}
+          >
+            Регистрация
+          </button>
+          <Link className="link c-grey" to="">
+            Помощь
+          </Link>
+        </div>
+      </Modal>
+      <Modal isOpen={isOpenRegModal} setModal={setIsOpenRegModal}>
+        <h3>Регистрация</h3>
+        <RegForm setModal={setIsOpenRegModal} />
+        <div className="flex-sb" style={{ width: "100%" }}>
+          <button
+            className="link c-grey"
+            onClick={() => {
+              setIsOpenModal((prev) => !prev);
+              setIsOpenRegModal((prev) => !prev);
+            }}
+          >
+            Авторизация
+          </button>
+          <Link className="link c-grey" to="">
+            Помощь
+          </Link>
+        </div>
+      </Modal>
     </div>
   );
 };
