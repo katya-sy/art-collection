@@ -34,11 +34,7 @@ export const Header = () => {
     setIsOpenMenu(false);
   };
 
-  isOpenMenu && window.innerWidth > 460
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "auto");
-
-  isOpenModal || isOpenRegModal
+  (isOpenMenu && window.innerWidth > 460) || isOpenModal || isOpenRegModal
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
 
