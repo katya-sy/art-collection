@@ -201,6 +201,7 @@ body {
   flex-direction: column;
   gap: 90px;
   margin: 90px 0;
+  min-height: 50vh;
 }
 
 .p-v-30 {
