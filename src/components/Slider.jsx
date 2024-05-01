@@ -1,16 +1,21 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import slide1 from "../assets/img/slide1.png";
-import { Autoplay } from "swiper/modules";
+import slide2 from "../assets/img/slide2.png";
+import slide3 from "../assets/img/slide3.png";
+import { Navigation } from "swiper/modules";
+import leftArrow from "../assets/img/left.svg";
+import rightArrow from "../assets/img/right.svg";
 
 export const Slider = () => {
   return (
     <Swiper
       spaceBetween={20}
-      modules={[Autoplay]}
-      autoplay={true}
-      delay={2000}
+      modules={[Navigation]}
+      navigation={{
+        prevEl: ".prev",
+        nextEl: ".next",
+      }}
       slidesPerView={1}
       style={{ maxWidth: "100%" }}
     >
@@ -21,19 +26,22 @@ export const Slider = () => {
       </SwiperSlide>
       <SwiperSlide>
         <div>
-          <img src={slide1} alt="Слайд" />
+          <img src={slide2} alt="Слайд" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div>
-          <img src={slide1} alt="Слайд" />
+          <img src={slide3} alt="Слайд" />
         </div>
       </SwiperSlide>
-      <SwiperSlide>
-        <div>
-          <img src={slide1} alt="Слайд" />
+      <div className="flex-sb" style={{ marginTop: 10 }}>
+        <div className="prev" style={{ cursor: "pointer" }}>
+          <img src={leftArrow} />
         </div>
-      </SwiperSlide>
+        <div className="next" style={{ cursor: "pointer" }}>
+          <img src={rightArrow} />
+        </div>
+      </div>
     </Swiper>
   );
 };
