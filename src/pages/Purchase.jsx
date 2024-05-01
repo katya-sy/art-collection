@@ -24,10 +24,10 @@ export const Purchase = () => {
     img: img1,
     title: "Большая зеленая картина",
     author: "Алиханов Хаджи-Мурад",
-    price: "1 900 000",
+    price: 1900000,
   };
 
-  const delieveryPrice = "10 000";
+  const delieveryPrice = 10000;
 
   return (
     <>
@@ -184,20 +184,33 @@ export const Purchase = () => {
                   <picture style={{ maxWidth: 200 }}>
                     <img src={product.img} alt={product.title} />
                   </picture>
-                  <h3>{product.price} ₽</h3>
+                  <h3>
+                    {product.price.toLocaleString("ru-RU", {
+                      style: "currency",
+                      currency: "RUB",
+                      minimumFractionDigits: 0,
+                    })}
+                  </h3>
                 </div>
                 <div className="grid-2 grid-2-nwr">
                   <h3>Доставка</h3>
-                  <h3>{delieveryPrice} ₽</h3>
+                  <h3>
+                    {delieveryPrice.toLocaleString("ru-RU", {
+                      style: "currency",
+                      currency: "RUB",
+                      minimumFractionDigits: 0,
+                    })}
+                  </h3>
                 </div>
               </div>
               <div className="grid-2 grid-2-nwr">
                 <h3>Итого</h3>
                 <h2 className="c-purple">
-                  {`${
-                    +product.price.replace(/\s/g, "") +
-                    +delieveryPrice.replace(/\s/g, "")
-                  } ₽`}
+                  {(product.price + delieveryPrice).toLocaleString("ru-RU", {
+                    style: "currency",
+                    currency: "RUB",
+                    minimumFractionDigits: 0,
+                  })}
                 </h2>
               </div>
               <button type="submit" className="btn">

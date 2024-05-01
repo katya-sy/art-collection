@@ -11,7 +11,7 @@ export const Product = () => {
     img: img1,
     title: "Большая зеленая картина",
     author: "Алиханов Хаджи-Мурад",
-    price: "1 900 000",
+    price: 1900000,
     id: 1,
     specific: {
       Размер: "280x360 см",

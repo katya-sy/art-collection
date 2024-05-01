@@ -16,7 +16,13 @@ export const ProductInfo = ({ product }) => {
           <h3 className="c-grey">{product.author}</h3>
         </div>
         <div className="flex-30 flex-col">
-          <h3 className="c-purple">{product.price} ₽</h3>
+          <h3 className="c-purple">
+            {product.price.toLocaleString("ru-RU", {
+              style: "currency",
+              currency: "RUB",
+              minimumFractionDigits: 0,
+            })}
+          </h3>
           <Button onClick={() => navigate("/purchase")}>Заказать</Button>
         </div>
       </div>

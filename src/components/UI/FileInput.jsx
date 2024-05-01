@@ -14,10 +14,13 @@ export const FileInput = ({ files, setFiles, ...props }) => {
 
   return (
     <>
-      <label style={{ position: "relative" }}>
+      <label>
         <input {...props} onChange={onSelectFile} type="file" />
         <p className="label-text">Добавить изображение</p>
-        <p style={{ position: "absolute", left: 5, bottom: 2 }}>
+        <p
+          className="label-text-mini"
+          style={{ position: "absolute", left: 5, bottom: 2 }}
+        >
           Добавлено изображений: {files.length}
         </p>
       </label>
