@@ -5,7 +5,6 @@ import { Home } from "./pages/Home.jsx";
 import { Catalog } from "./pages/Catalog.jsx";
 import { List } from "./pages/List.jsx";
 import { Product } from "./pages/Product.jsx";
-// import { RequiredAuth } from "./components/UI/RequiredAuth.jsx";
 import { Purchase } from "./pages/Purchase.jsx";
 import { Admin } from "./pages/Admin.jsx";
 import { useUserStore } from "./store/index.js";

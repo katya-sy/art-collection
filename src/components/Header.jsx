@@ -47,6 +47,7 @@ export const Header = () => {
     updateAuth(false);
 
     setIsOpenLogoutModal(false);
+    navigate("/");
   };
 
   (isOpenMenu && window.innerWidth > 460) || isOpenModal || isOpenRegModal
