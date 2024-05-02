@@ -244,7 +244,11 @@ export const Purchase = () => {
           </form>
         </div>
       </div>
-      <Modal noClose isOpen={isOpenModal} setModal={setIsOpenModal}>
+      <Modal
+        noClose={() => navigate("/")}
+        isOpen={isOpenModal}
+        setModal={setIsOpenModal}
+      >
         <h3>Ваш заказ принят!</h3>
         <p>Мы свяжемся с Вами в течение 20 минут для подтверждения заказа</p>
         <Button onClick={() => navigate("/")}>На главную</Button>

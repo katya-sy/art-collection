@@ -12,7 +12,7 @@ export const Modal = ({ isOpen, setModal, noClose, children }) => {
       <div
         className="modal"
         onClick={() => {
-          if (!noClose) closeModal();
+          noClose ? noClose() : closeModal();
         }}
       >
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
