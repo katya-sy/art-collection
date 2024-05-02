@@ -2,8 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "./UI/Input";
 import { Button } from "./UI/Button";
+import { registration } from "../http/userAPI";
 
-export const RegForm = ({ setModal }) => {
+export const RegForm = ({ setModal, setAuthModal }) => {
   const {
     register,
     handleSubmit,
@@ -11,10 +12,19 @@ export const RegForm = ({ setModal }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     reset();
+    const userData = await registration(
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.phone,
+      data.password
+    );
+
     setModal(false);
+    setAuthModal(true);
   };
 
   return (

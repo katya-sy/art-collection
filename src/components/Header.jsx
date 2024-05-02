@@ -9,6 +9,7 @@ import { Modal } from "./UI/Modal";
 import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
 import { useUserStore } from "../store";
+import { Button } from "./UI/Button";
 
 export const Header = () => {
   const isAuth = useUserStore((state) => state.isAuth);
@@ -29,6 +30,7 @@ export const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenRegModal, setIsOpenRegModal] = useState(false);
+  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
@@ -77,7 +79,7 @@ export const Header = () => {
                     className="link"
                     onClick={() => {
                       setIsOpenMenu(false);
-                      logout();
+                      setIsOpenLogoutModal(true);
                     }}
                   >
                     Выход
@@ -163,7 +165,7 @@ export const Header = () => {
       </Modal>
       <Modal isOpen={isOpenRegModal} setModal={setIsOpenRegModal}>
         <h3>Регистрация</h3>
-        <RegForm setModal={setIsOpenRegModal} />
+        <RegForm setModal={setIsOpenRegModal} setAuthModal={setIsOpenModal} />
         <div className="flex-sb" style={{ width: "100%" }}>
           <button
             className="link c-grey"
@@ -177,6 +179,13 @@ export const Header = () => {
           <Link className="link c-grey" to="">
             Помощь
           </Link>
+        </div>
+      </Modal>
+      <Modal isOpen={isOpenLogoutModal} setModal={setIsOpenLogoutModal}>
+        <h3>Вы точно хотите выйти из аккаунта?</h3>
+        <div className="flex-20" style={{ width: "100%" }}>
+          <Button onClick={logout}>Выйти</Button>
+          <Button onClick={() => setIsOpenLogoutModal(false)}>Отмена</Button>
         </div>
       </Modal>
     </div>
