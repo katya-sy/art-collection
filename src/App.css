@@ -315,6 +315,10 @@ body {
   color: var(--white);
 }
 
+.c-pink {
+  color: var(--pink);
+}
+
 .header {
   flex-wrap: wrap;
   gap: 20px;
@@ -607,5 +611,9 @@ body {
 
   .btn {
     padding: 6px 20px;
+  }
+
+  .link {
+    font-size: 14px;
   }
 }

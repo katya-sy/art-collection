@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import { Input } from "./UI/Input";
@@ -13,6 +13,9 @@ import { useUserStore } from "../store";
 export const Header = () => {
   const isAuth = useUserStore((state) => state.isAuth);
   const user = useUserStore((state) => state.user);
+  const updateUser = useUserStore((state) => state.updateUser);
+  const updateAuth = useUserStore((state) => state.updateAuth);
+
   const categories = [
     "Живопись",
     "Скульптура",
@@ -36,6 +39,12 @@ export const Header = () => {
     setIsOpenMenu(false);
   };
 
+  const logout = () => {
+    localStorage.removeItem("user");
+    updateUser({});
+    updateAuth(false);
+  };
+
   (isOpenMenu && window.innerWidth > 460) || isOpenModal || isOpenRegModal
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
@@ -48,7 +57,7 @@ export const Header = () => {
             <img src={logo} alt="Логотип" width={270} height={59} />
           </Link>
           <nav>
-            <ul className="flex-20">
+            <ul className="flex-20 flex-c">
               <li>
                 <button
                   className="link"
@@ -62,16 +71,41 @@ export const Header = () => {
                   Каталог
                 </Link>
               </li>
+              {isAuth && (
+                <li>
+                  <button
+                    className="link"
+                    onClick={() => {
+                      setIsOpenMenu(false);
+                      logout();
+                    }}
+                  >
+                    Выход
+                  </button>
+                </li>
+              )}
               <li>
-                <button
-                  className="link"
-                  onClick={() => {
-                    setIsOpenMenu(false);
-                    setIsOpenModal((prev) => !prev);
-                  }}
-                >
-                  {isAuth ? user.firstName : "Войти"}
-                </button>
+                {isAuth ? (
+                  <button
+                    className="link c-pink"
+                    onClick={() => {
+                      setIsOpenMenu(false);
+                      setIsOpenModal((prev) => !prev);
+                    }}
+                  >
+                    {`${user?.firstName} ${user?.lastName}`}
+                  </button>
+                ) : (
+                  <button
+                    className="link c-pink"
+                    onClick={() => {
+                      setIsOpenMenu(false);
+                      setIsOpenModal((prev) => !prev);
+                    }}
+                  >
+                    Войти
+                  </button>
+                )}
               </li>
             </ul>
           </nav>

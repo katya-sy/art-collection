@@ -17,10 +17,11 @@ export const AuthForm = ({ setModal }) => {
   const onSubmit = async (data) => {
     console.log(data);
     reset();
-    login(data.email, data.password);
-    if (JSON.parse(localStorage.getItem("user"))) {
+    const userData = await login(data.email, data.password);
+
+    if (userData) {
       updateAuth(true);
-      updateUser(JSON.parse(localStorage.getItem("user")));
+      updateUser(userData);
     }
     setModal(false);
   };
