@@ -15,3 +15,14 @@ export const useUserStore = create((set) => ({
       },
     })),
 }));
+
+export const useCategoryStore = create((set) => ({
+  categories: [],
+  updateCategories: (newCategory) =>
+    set((state) => ({
+      categories: {
+        ...state.categories,
+        newCategory,
+      },
+    })),
+}));

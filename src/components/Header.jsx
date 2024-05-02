@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import { Input } from "./UI/Input";
@@ -8,31 +8,29 @@ import { useNavigate } from "react-router-dom";
 import { Modal } from "./UI/Modal";
 import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
-import { useUserStore } from "../store";
+import { useCategoryStore, useUserStore } from "../store";
 import { Button } from "./UI/Button";
+import { getAllCategories } from "../http/productAPI";
 
 export const Header = () => {
   const isAuth = useUserStore((state) => state.isAuth);
   const user = useUserStore((state) => state.user);
   const updateUser = useUserStore((state) => state.updateUser);
   const updateAuth = useUserStore((state) => state.updateAuth);
+  const categoriesFromStore = useCategoryStore((state) => state.categories);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenRegModal, setIsOpenRegModal] = useState(false);
   const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false);
+  const [categories, setCategories] = useState(categoriesFromStore);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
-  const categories = [
-    "Живопись",
-    "Скульптура",
-    "Графика",
-    "Гравюра и литография",
-    "Керамика",
-    "Мозаика и стеклянные работы",
-    "Фотоработы",
-    "Абстрактное искусство",
-  ];
+  useEffect(() => {
+    setCategories(categoriesFromStore);
+
+    console.log("categories", categories);
+  }, [categoriesFromStore]);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -136,11 +134,17 @@ export const Header = () => {
                 </button>
               </form>
               <ul className="grid-4" style={{ gap: 20 }}>
-                {categories.map((category) => (
-                  <li key={category}>
-                    <Link className="link c-black" to={"/list"}>
-                      {category}
-                    </Link>
+                {categories.newCategory?.map((category) => (
+                  <li key={category.id}>
+                    <button
+                      className="link c-black"
+                      onClick={() => {
+                        navigate("/category/" + category.slug);
+                        setIsOpenMenu(false);
+                      }}
+                    >
+                      {category.name}
+                    </button>
                   </li>
                 ))}
               </ul>

@@ -2,19 +2,22 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "../http/productAPI";
 import { ProductItem } from "./ProductItem";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { useParams } from "react-router-dom";
 
 export const ProductList = () => {
   const [products, setProducts] = useState(null);
+  const { categorySlug } = useParams();
+  console.log("categorySlug", categorySlug);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllProducts();
+      const data = await getAllProducts(categorySlug);
       setProducts(data);
       console.log(data);
     };
 
     fetchData();
     console.log(products);
-  }, []);
+  }, [categorySlug]);
 
   return (
     <ResponsiveMasonry
