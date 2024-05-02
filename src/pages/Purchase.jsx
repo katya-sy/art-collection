@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img1 from "../assets/img/img1.png";
 import { useForm } from "react-hook-form";
 import { Input } from "./../components/UI/Input";
@@ -6,6 +6,11 @@ import { Textarea } from "./../components/UI/Textarea";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Select } from "../components/UI/Select";
+import { useNavigate, useParams } from "react-router-dom";
+import { getProduct } from "../http/productAPI";
+import { useUserStore } from "../store";
+import { Modal } from "../components/UI/Modal";
+import { Button } from "../components/UI/Button";
 
 export const Purchase = () => {
   const {
@@ -14,17 +19,28 @@ export const Purchase = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const [product, setProduct] = useState(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(id);
+      const data = await getProduct(id);
+      setProduct(data[0]);
+      console.log(data);
+    };
+
+    fetchData();
+    console.log(product);
+  }, []);
 
   const onSubmit = (data) => {
     console.log(data);
+    setIsOpenModal(true);
     reset();
-  };
-
-  const product = {
-    img: img1,
-    title: "Большая зеленая картина",
-    author: "Алиханов Хаджи-Мурад",
-    price: 1900000,
   };
 
   const delieveryPrice = 10000;
@@ -97,8 +113,8 @@ export const Purchase = () => {
               <div className="flex-30 flex-col">
                 <h2>Получатель</h2>
                 <div className="flex-10 flex-col">
-                  <h4>Иванов Иван</h4>
-                  <h4>+7 999 999 99 99</h4>
+                  <h4>{`${user.firstName} ${user.lastName}`}</h4>
+                  <h4>{user.phone}</h4>
                 </div>
                 <div className="flex-20 btns">
                   <button type="button" className="btn btn-mini">
@@ -119,6 +135,10 @@ export const Purchase = () => {
                     <option value="default" disabled>
                       Дата
                     </option>
+                    <option value="03.05">3 мая</option>
+                    <option value="04.05">4 мая</option>
+                    <option value="05.05">5 мая</option>
+                    <option value="06.05">6 мая</option>
                   </Select>
                   <Select
                     defaultValue="default"
@@ -127,6 +147,10 @@ export const Purchase = () => {
                     <option value="default" disabled>
                       Интервал времени
                     </option>
+                    <option value="09:00-12:00">09:00-12:00</option>
+                    <option value="04.05">12:00-15:00</option>
+                    <option value="05.05">15:00-18:00</option>
+                    <option value="06.05">18:00-21:00</option>
                   </Select>
                 </div>
               </div>
@@ -182,10 +206,10 @@ export const Purchase = () => {
                   style={{ flexWrap: "wrap", rowGap: 5 }}
                 >
                   <picture style={{ maxWidth: 200 }}>
-                    <img src={product.img} alt={product.title} />
+                    <img src={product?.image} alt={product?.title} />
                   </picture>
                   <h3>
-                    {product.price.toLocaleString("ru-RU", {
+                    {product?.price.toLocaleString("ru-RU", {
                       style: "currency",
                       currency: "RUB",
                       minimumFractionDigits: 0,
@@ -206,7 +230,7 @@ export const Purchase = () => {
               <div className="grid-2 grid-2-nwr">
                 <h3>Итого</h3>
                 <h2 className="c-purple">
-                  {(product.price + delieveryPrice).toLocaleString("ru-RU", {
+                  {(product?.price + delieveryPrice).toLocaleString("ru-RU", {
                     style: "currency",
                     currency: "RUB",
                     minimumFractionDigits: 0,
@@ -220,6 +244,11 @@ export const Purchase = () => {
           </form>
         </div>
       </div>
+      <Modal noClose isOpen={isOpenModal} setModal={setIsOpenModal}>
+        <h3>Ваш заказ принят!</h3>
+        <p>Мы свяжемся с Вами в течение 20 минут для подтверждения заказа</p>
+        <Button onClick={() => navigate("/")}>На главную</Button>
+      </Modal>
       <Footer />
     </>
   );

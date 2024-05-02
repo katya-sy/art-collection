@@ -1,25 +1,26 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import img1 from "../assets/img/img1.png";
-import { Button } from "./../components/UI/Button";
 import { ProductInfo } from "../components/ProductInfo";
 import { ProductSpecific } from "../components/ProductSpecific";
+import { getProduct } from "../http/productAPI";
+import { useParams } from "react-router-dom";
 
 export const Product = () => {
-  const product = {
-    img: img1,
-    title: "Большая зеленая картина",
-    author: "Алиханов Хаджи-Мурад",
-    price: 1900000,
-    id: 1,
-    specific: {
-      Размер: "280x360 см",
-      Материалы: "Холст, масло",
-      "Дата создания": "2016 год",
-      Жанр: "Абстракционизм",
-    },
-  };
+  const [product, setProduct] = useState(null);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(id);
+      const data = await getProduct(id);
+      setProduct(data[0]);
+      console.log(data);
+    };
+
+    fetchData();
+    console.log(product);
+  }, []);
 
   return (
     <div>
@@ -27,7 +28,7 @@ export const Product = () => {
       <div className="container">
         <div className="wrapper">
           <ProductInfo product={product} />
-          <ProductSpecific specific={product.specific} />
+          <ProductSpecific specific={product?.specifications} />
         </div>
       </div>
       <Footer />

@@ -25,7 +25,7 @@ export const ProductItem = ({ img, title, author, price, id }) => {
           })}
         </h4>
       </div>
-      <Button size="mini" onClick={() => navigate("/purchase")}>
+      <Button size="mini" onClick={() => navigate("/purchase/" + id)}>
         Заказать
       </Button>
     </div>

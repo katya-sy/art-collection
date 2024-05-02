@@ -1,7 +1,7 @@
 import Portal from "./Portal";
 import close from "../../assets/img/close.svg";
 
-export const Modal = ({ isOpen, setModal, children }) => {
+export const Modal = ({ isOpen, setModal, noClose, children }) => {
   const closeModal = () => {
     setModal(false);
   };
@@ -9,11 +9,18 @@ export const Modal = ({ isOpen, setModal, children }) => {
   if (isOpen) {
     return (
       // <Portal>
-      <div className="modal" onClick={closeModal}>
+      <div
+        className="modal"
+        onClick={() => {
+          if (!noClose) closeModal();
+        }}
+      >
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <button onClick={closeModal} className="close-modal">
-            <img src={close} />
-          </button>
+          {!noClose && (
+            <button onClick={closeModal} className="close-modal">
+              <img src={close} />
+            </button>
+          )}
           {children}
         </div>
       </div>

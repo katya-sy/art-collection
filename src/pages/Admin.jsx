@@ -1,6 +1,4 @@
-import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-// import "react-tabs/style/react-tabs.css";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { ProductCreateForm } from "../components/ProductCreateForm";

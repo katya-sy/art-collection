@@ -7,10 +7,11 @@ export const RequiredAuth = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuth) {
-      navigate(-1);
-      return;
-    }
+    console.log(isAuth);
+    // if (!isAuth) {
+    // navigate(-1);
+    // return null;
+    // }
   });
 
   return <>{children}</>;

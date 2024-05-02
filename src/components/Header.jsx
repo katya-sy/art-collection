@@ -16,6 +16,12 @@ export const Header = () => {
   const user = useUserStore((state) => state.user);
   const updateUser = useUserStore((state) => state.updateUser);
   const updateAuth = useUserStore((state) => state.updateAuth);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenRegModal, setIsOpenRegModal] = useState(false);
+  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false);
+  const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   const categories = [
     "Живопись",
@@ -27,12 +33,6 @@ export const Header = () => {
     "Фотоработы",
     "Абстрактное искусство",
   ];
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isOpenRegModal, setIsOpenRegModal] = useState(false);
-  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false);
-  const { register, handleSubmit, reset } = useForm();
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
@@ -45,6 +45,8 @@ export const Header = () => {
     localStorage.removeItem("user");
     updateUser({});
     updateAuth(false);
+
+    setIsOpenLogoutModal(false);
   };
 
   (isOpenMenu && window.innerWidth > 460) || isOpenModal || isOpenRegModal
