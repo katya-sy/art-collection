@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import { Input } from "./UI/Input";
 import searchImg from "../assets/img/search.svg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import Portal from "./UI/Portal";
 import { Modal } from "./UI/Modal";
 import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
+import { Context } from "../main";
+import { observer } from "mobx-react-lite";
 
-export const Header = () => {
+export const Header = observer(() => {
+  const { user } = useContext(Context);
   const categories = [
     "Живопись",
     "Скульптура",
@@ -68,7 +70,9 @@ export const Header = () => {
                     setIsOpenModal((prev) => !prev);
                   }}
                 >
-                  Войти
+                  {user.isAuth
+                    ? `${JSON.parse(localStorage.getItem("user")).firstName}`
+                    : "Войsdffти"}
                 </button>
               </li>
             </ul>
@@ -145,4 +149,4 @@ export const Header = () => {
       </Modal>
     </div>
   );
-};
+});

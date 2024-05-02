@@ -1,9 +1,13 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "./UI/Input";
 import { Button } from "./UI/Button";
+import { login } from "../http/userAPI";
+import { useContext } from "react";
+import { Context } from "../main";
+import { observer } from "mobx-react-lite";
 
-export const AuthForm = ({ setModal }) => {
+export const AuthForm = observer(({ setModal }) => {
+  const { user } = useContext(Context);
   const {
     register,
     handleSubmit,
@@ -11,9 +15,13 @@ export const AuthForm = ({ setModal }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     reset();
+    login(data.email, data.password);
+    if (localStorage.getItem("user")) {
+      user.setIsAuth = true;
+    }
     setModal(false);
   };
 
@@ -48,4 +56,4 @@ export const AuthForm = ({ setModal }) => {
       <Button type="submit">Войти</Button>
     </form>
   );
-};
+});

@@ -4,6 +4,7 @@ import { List } from "../pages/List";
 import { Product } from "../pages/Product";
 import { Purchase } from "../pages/Purchase";
 import { Admin } from "../pages/Admin";
+import { RequiredAuth } from "./../components/UI/RequiredAuth";
 
 export const routes = [
   {
@@ -24,10 +25,18 @@ export const routes = [
   },
   {
     path: "/purchase",
-    element: <Purchase />,
+    element: (
+      <RequiredAuth>
+        <Purchase />
+      </RequiredAuth>
+    ),
   },
   {
     path: "/admin",
-    element: <Admin />,
+    element: (
+      <RequiredAuth>
+        <Admin />
+      </RequiredAuth>
+    ),
   },
 ];
