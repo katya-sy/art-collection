@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import { Input } from "./UI/Input";
@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { Modal } from "./UI/Modal";
 import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
-import { Context } from "../main";
-import { observer } from "mobx-react-lite";
+import { useUserStore } from "../store";
 
-export const Header = observer(() => {
-  const { user } = useContext(Context);
+export const Header = () => {
+  const isAuth = useUserStore((state) => state.isAuth);
+  const user = useUserStore((state) => state.user);
   const categories = [
     "Живопись",
     "Скульптура",
@@ -70,9 +70,7 @@ export const Header = observer(() => {
                     setIsOpenModal((prev) => !prev);
                   }}
                 >
-                  {user.isAuth
-                    ? `${JSON.parse(localStorage.getItem("user")).firstName}`
-                    : "Войsdffти"}
+                  {isAuth ? user.firstName : "Войти"}
                 </button>
               </li>
             </ul>
@@ -149,4 +147,4 @@ export const Header = observer(() => {
       </Modal>
     </div>
   );
-});
+};

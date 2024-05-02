@@ -2,12 +2,11 @@ import { useForm } from "react-hook-form";
 import { Input } from "./UI/Input";
 import { Button } from "./UI/Button";
 import { login } from "../http/userAPI";
-import { useContext } from "react";
-import { Context } from "../main";
-import { observer } from "mobx-react-lite";
+import { useUserStore } from "../store";
 
-export const AuthForm = observer(({ setModal }) => {
-  const { user } = useContext(Context);
+export const AuthForm = ({ setModal }) => {
+  const updateAuth = useUserStore((state) => state.updateAuth);
+  const updateUser = useUserStore((state) => state.updateUser);
   const {
     register,
     handleSubmit,
@@ -19,8 +18,9 @@ export const AuthForm = observer(({ setModal }) => {
     console.log(data);
     reset();
     login(data.email, data.password);
-    if (localStorage.getItem("user")) {
-      user.setIsAuth = true;
+    if (JSON.parse(localStorage.getItem("user"))) {
+      updateAuth(true);
+      updateUser(JSON.parse(localStorage.getItem("user")));
     }
     setModal(false);
   };
@@ -56,4 +56,4 @@ export const AuthForm = observer(({ setModal }) => {
       <Button type="submit">Войти</Button>
     </form>
   );
-});
+};

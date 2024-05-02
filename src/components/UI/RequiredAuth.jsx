@@ -1,18 +1,17 @@
-import { useContext, useEffect } from "react";
-import { Context } from "../../main";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { observer } from "mobx-react-lite";
+import { useUserStore } from "../../store";
 
-export const RequiredAuth = observer(({ children }) => {
-  const { user } = useContext(Context);
+export const RequiredAuth = ({ children }) => {
+  const isAuth = useUserStore((state) => state.isAuth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user.isAuth) {
+    if (!isAuth) {
       navigate(-1);
       return;
     }
   });
 
   return <>{children}</>;
-});
+};
