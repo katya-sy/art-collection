@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Home } from "./pages/Home.jsx";
 import { Catalog } from "./pages/Catalog.jsx";
 import { List } from "./pages/List.jsx";
@@ -17,6 +17,7 @@ const App = () => {
   const updateCategories = useCategoryStore((state) => state.updateCategories);
   const categories = useCategoryStore((state) => state.categories);
   const isAuth = useUserStore((state) => state.isAuth);
+  const [auth, setAuth] = useState(true);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("user"))) {
@@ -33,6 +34,8 @@ const App = () => {
     fetchData();
   }, []);
 
+  useEffect(() => setAuth(isAuth), [isAuth]);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -41,7 +44,7 @@ const App = () => {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/category/:categorySlug" element={<List />} />
         <Route path="/product/:id" element={<Product />} />
-        {isAuth ? (
+        {auth ? (
           <>
             <Route path="/purchase/:id" element={<Purchase />} />
             <Route path="/admin" element={<Admin />} />
