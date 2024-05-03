@@ -134,10 +134,10 @@ export const Purchase = () => {
                     <option value="default" disabled>
                       Дата
                     </option>
-                    <option value="03.05">3 мая</option>
-                    <option value="04.05">4 мая</option>
-                    <option value="05.05">5 мая</option>
-                    <option value="06.05">6 мая</option>
+                    <option value="10.05">10 мая</option>
+                    <option value="11.05">11 мая</option>
+                    <option value="12.05">12 мая</option>
+                    <option value="13.05">13 мая</option>
                   </Select>
                   <Select
                     defaultValue="default"

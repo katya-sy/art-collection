@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
@@ -14,7 +13,6 @@ export const Footer = () => {
               Каталог
             </Link>
           </li>
-          {/* <li className="link">Выставки</li> */}
           <li className="link">Партнерам</li>
           <li className="link">Политика конфиденциальности</li>
           <li>

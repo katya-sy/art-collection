@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "./UI/Input";
 import { Select } from "./UI/Select";
 import { FileInput } from "./UI/FileInput";
 import { Button } from "./UI/Button";
+import { useCategoryStore } from "../store";
 
 export const ProductCreateForm = () => {
   const [files, setFiles] = useState([]);
+  const categoriesFromStore = useCategoryStore((state) => state.categories);
+  const [categories, setCategories] = useState(categoriesFromStore);
   const {
     register,
     handleSubmit,
@@ -14,6 +17,12 @@ export const ProductCreateForm = () => {
     clearErrors,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    setCategories(categoriesFromStore);
+
+    console.log("categories", categories);
+  }, [categoriesFromStore]);
 
   const onSubmit = (data) => {
     data = { ...data, files: files };
@@ -64,6 +73,12 @@ export const ProductCreateForm = () => {
           <option value="default" disabled>
             Категория
           </option>
+          {categories &&
+            categories.newCategory?.map((category) => (
+              <option key={category.id} value={[category.id, category.slug]}>
+                {category.name}
+              </option>
+            ))}
         </Select>
         <Input
           register={register("characteristic")}

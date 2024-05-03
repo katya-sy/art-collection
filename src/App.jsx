@@ -31,7 +31,6 @@ const App = () => {
     };
 
     fetchData();
-    console.log("categories", categories);
   }, []);
 
   return (

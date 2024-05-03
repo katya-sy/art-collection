@@ -10,7 +10,6 @@ import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
 import { useCategoryStore, useUserStore } from "../store";
 import { Button } from "./UI/Button";
-import { getAllCategories } from "../http/productAPI";
 
 export const Header = () => {
   const isAuth = useUserStore((state) => state.isAuth);
