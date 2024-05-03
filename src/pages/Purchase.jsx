@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import img1 from "../assets/img/img1.png";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "./../components/UI/Input";
 import { Textarea } from "./../components/UI/Textarea";

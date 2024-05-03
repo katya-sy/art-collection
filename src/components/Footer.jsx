@@ -14,9 +14,14 @@ export const Footer = () => {
               Каталог
             </Link>
           </li>
-          <li className="link">Выставки</li>
+          {/* <li className="link">Выставки</li> */}
           <li className="link">Партнерам</li>
           <li className="link">Политика конфиденциальности</li>
+          <li>
+            <Link className="link" to="/admin">
+              Админ-панель
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>

@@ -9,6 +9,7 @@ import { Purchase } from "./pages/Purchase.jsx";
 import { Admin } from "./pages/Admin.jsx";
 import { useCategoryStore, useUserStore } from "./store/index.js";
 import { getAllCategories } from "./http/productAPI.js";
+import { ScrollToTop } from "./components/ScrollToTop.jsx";
 
 const App = () => {
   const updateUser = useUserStore((state) => state.updateUser);
@@ -35,22 +36,23 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/category/:categorySlug" element={<List />} />
         <Route path="/product/:id" element={<Product />} />
-        {/* {isAuth ? ( */}
-        <>
-          <Route path="/purchase/:id" element={<Purchase />} />
-          <Route path="/admin" element={<Admin />} />
-        </>
-        {/* ) : (
+        {isAuth ? (
+          <>
+            <Route path="/purchase/:id" element={<Purchase />} />
+            <Route path="/admin" element={<Admin />} />
+          </>
+        ) : (
           <>
             <Route path="/purchase/:id" element={<Navigate to="/" />} />
             <Route path="/admin" element={<Navigate to="/" />} />
           </>
-        )} */}
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

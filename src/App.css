@@ -30,6 +30,23 @@
   outline: solid 1px var(--purple);
 }
 
+body {
+  font-family: "Raleway";
+  background-color: var(--white);
+  color: var(--black);
+  overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  height: auto;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+  border-radius: 5px;
+}
+
 button {
   border: none;
   background-color: transparent;
@@ -190,12 +207,6 @@ select:hover {
 
 .link:hover {
   color: var(--purple);
-}
-
-body {
-  font-family: "Raleway";
-  background-color: var(--white);
-  color: var(--black);
 }
 
 .container {
@@ -601,6 +612,25 @@ body {
 
   label {
     padding-bottom: 15px;
+  }
+
+  .react-tabs__tab-list {
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .react-tabs__tab-list:focus {
+    outline: none;
+  }
+
+  .react-tabs__tab-list::-webkit-scrollbar {
+    width: auto;
+    height: 4px;
+  }
+
+  .react-tabs__tab-list::-webkit-scrollbar-thumb {
+    background-color: var(--purple);
+    border-radius: 4px;
   }
 }
 
