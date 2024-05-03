@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Home } from "./pages/Home.jsx";
 import { Catalog } from "./pages/Catalog.jsx";
 import { List } from "./pages/List.jsx";

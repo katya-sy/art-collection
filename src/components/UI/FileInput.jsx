@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 export const FileInput = ({ files, setFiles, ...props }) => {
   const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
