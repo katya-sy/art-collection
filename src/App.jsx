@@ -15,15 +15,17 @@ const App = () => {
   const updateUser = useUserStore((state) => state.updateUser);
   const updateAuth = useUserStore((state) => state.updateAuth);
   const updateCategories = useCategoryStore((state) => state.updateCategories);
-  const categories = useCategoryStore((state) => state.categories);
   const isAuth = useUserStore((state) => state.isAuth);
-  const [auth, setAuth] = useState(true);
+  const isChecked = useUserStore((state) => state.isChecked);
+  const updateChecked = useUserStore((state) => state.updateChecked);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("user"))) {
       updateUser(JSON.parse(localStorage.getItem("user")));
       updateAuth(true);
     }
+
+    updateChecked(true);
 
     const fetchData = async () => {
       const data = await getAllCategories();
@@ -34,31 +36,31 @@ const App = () => {
     fetchData();
   }, []);
 
-  useEffect(() => setAuth(isAuth), [isAuth]);
-
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/category/:categorySlug" element={<List />} />
-        <Route path="/product/:id" element={<Product />} />
-        {auth ? (
-          <>
-            <Route path="/purchase/:id" element={<Purchase />} />
-            <Route path="/admin" element={<Admin />} />
-          </>
-        ) : (
-          <>
-            <Route path="/purchase/:id" element={<Navigate to="/" />} />
-            <Route path="/admin" element={<Navigate to="/" />} />
-          </>
-        )}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  if (isChecked) {
+    return (
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/category/:categorySlug" element={<List />} />
+          <Route path="/product/:id" element={<Product />} />
+          {isAuth ? (
+            <>
+              <Route path="/purchase/:id" element={<Purchase />} />
+              <Route path="/admin" element={<Admin />} />
+            </>
+          ) : (
+            <>
+              <Route path="/purchase/:id" element={<Navigate to="/" />} />
+              <Route path="/admin" element={<Navigate to="/" />} />
+            </>
+          )}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 };
 
 export default App;

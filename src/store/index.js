@@ -3,6 +3,7 @@ import { create } from "zustand";
 export const useUserStore = create((set) => ({
   isAuth: false,
   user: null,
+  isChecked: false,
   updateAuth: (auth) => set({ isAuth: auth }),
   updateUser: (newUser) =>
     set((state) => ({
@@ -14,6 +15,7 @@ export const useUserStore = create((set) => ({
         email: newUser.email,
       },
     })),
+  updateChecked: (checked) => set({ isChecked: checked }),
 }));
 
 export const useCategoryStore = create((set) => ({
