@@ -28,3 +28,11 @@ export const useCategoryStore = create((set) => ({
       },
     })),
 }));
+
+export const useSearchStore = create((set) => ({
+  search: "",
+  page: 1,
+  limit: 8,
+  updateSearch: (search) => set({ search: search }),
+  updatePage: (page) => set({ page: page }),
+}));

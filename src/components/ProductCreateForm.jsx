@@ -98,7 +98,7 @@ export const ProductCreateForm = () => {
           register={register("category", { required: true })}
         >
           <option value="default" disabled>
-            Категория
+            Выберите категорию
           </option>
           {categories &&
             categories.newCategory?.map((category) => (

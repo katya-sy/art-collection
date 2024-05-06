@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { Modal } from "./UI/Modal";
 import { AuthForm } from "./AuthForm";
 import { RegForm } from "./RegForm";
-import { useCategoryStore, useUserStore } from "../store";
+import { useCategoryStore, useSearchStore, useUserStore } from "../store";
 import { Button } from "./UI/Button";
+import { getAllProducts } from "../http/productAPI";
 
 export const Header = () => {
   const isAuth = useUserStore((state) => state.isAuth);
@@ -17,6 +18,7 @@ export const Header = () => {
   const updateUser = useUserStore((state) => state.updateUser);
   const updateAuth = useUserStore((state) => state.updateAuth);
   const categoriesFromStore = useCategoryStore((state) => state.categories);
+  const updateSearch = useSearchStore((state) => state.updateSearch);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenRegModal, setIsOpenRegModal] = useState(false);
@@ -32,10 +34,11 @@ export const Header = () => {
   }, [categoriesFromStore]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data.search);
+    updateSearch(data.search);
     reset();
-    navigate("/list");
     setIsOpenMenu(false);
+    navigate("/search");
   };
 
   const logout = () => {
@@ -127,7 +130,10 @@ export const Header = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex-20 search-wrapper"
               >
-                <Input register={register("search")} placeholder={"Поиск..."} />
+                <Input
+                  register={register("search")}
+                  placeholder={"Поиск по названию или автору..."}
+                />
                 <button type="submit" className="btn btn-icon">
                   <img src={searchImg} />
                 </button>

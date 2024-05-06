@@ -19,7 +19,7 @@ export const Product = () => {
     };
 
     fetchData();
-    console.log(product);
+    console.log("prod", product);
   }, []);
 
   return (
@@ -27,7 +27,7 @@ export const Product = () => {
       <Header />
       <div className="container">
         <div className="wrapper">
-          <ProductInfo product={product} />
+          <ProductInfo products={product} />
           <ProductSpecific specific={product?.specifications} />
         </div>
       </div>

@@ -1,8 +1,18 @@
 import { $host } from ".";
 
-export const getAllProducts = async (categorySlug) => {
-  const { data } = await $host.get("products", { params: { categorySlug } });
-  return data;
+export const getAllProducts = async (
+  page,
+  limit,
+  search,
+  categorySlug = null
+) => {
+  const params = { _page: page, _limit: limit, q: search };
+  if (categorySlug) params.categorySlug = categorySlug;
+
+  const { data, headers } = await $host.get("products", {
+    params: params,
+  });
+  return { data, headers };
 };
 
 export const getProduct = async (id) => {

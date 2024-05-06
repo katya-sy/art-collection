@@ -10,6 +10,7 @@ import { Admin } from "./pages/Admin.jsx";
 import { useCategoryStore, useUserStore } from "./store/index.js";
 import { getAllCategories } from "./http/productAPI.js";
 import { ScrollToTop } from "./components/ScrollToTop.jsx";
+import { Search } from "./pages/Search.jsx";
 
 const App = () => {
   const updateUser = useUserStore((state) => state.updateUser);
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/category/:categorySlug" element={<List />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/product/:id" element={<Product />} />
           {isAuth ? (
             <>

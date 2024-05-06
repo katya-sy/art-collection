@@ -359,6 +359,10 @@ select:hover {
   transition: color 0.3s ease-in-out;
 }
 
+.pagination-active {
+  color: var(--purple);
+}
+
 .pagination:hover {
   color: var(--purple);
 }

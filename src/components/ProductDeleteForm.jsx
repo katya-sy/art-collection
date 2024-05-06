@@ -10,7 +10,7 @@ export const ProductDeleteForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllProducts();
+      const { data } = await getAllProducts();
       setProducts(data);
       console.log(data);
     };
@@ -38,7 +38,7 @@ export const ProductDeleteForm = () => {
           register={register("product", { required: true })}
         >
           <option value="default" disabled>
-            Товар
+            Выберите товар
           </option>
           {products &&
             products?.map((product) => (
