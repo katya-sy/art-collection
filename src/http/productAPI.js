@@ -50,3 +50,8 @@ export const deleteCategory = async (id) => {
   const { data } = await $host.delete(`categories/${id}`);
   return data;
 };
+
+export const deleteProduct = async (id) => {
+  const { data } = await $host.delete(`products/${id}`);
+  return data;
+};

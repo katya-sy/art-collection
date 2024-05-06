@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { Input } from "./UI/Input";
 import { Button } from "./UI/Button";
 import { Select } from "./UI/Select";
 import { useCategoryStore } from "../store";
