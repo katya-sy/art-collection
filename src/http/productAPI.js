@@ -37,3 +37,11 @@ export const createProduct = async ({
   });
   return data;
 };
+
+export const createCategory = async ({ name, slug }) => {
+  const { data } = await $host.post("categories", {
+    name,
+    slug,
+  });
+  return data;
+};
