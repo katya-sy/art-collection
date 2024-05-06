@@ -6,7 +6,7 @@ export const FileInput = ({ files, setFiles, ...props }) => {
     }
 
     console.log(e.target.files);
-    setFiles([...files, ...e.target.files]);
+    setFiles((prevFiles) => [...prevFiles, ...e.target.files]);
     console.log(files);
   };
 

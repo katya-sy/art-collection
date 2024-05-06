@@ -16,3 +16,24 @@ export const getAllCategories = async () => {
   console.log(data);
   return data;
 };
+
+export const createProduct = async ({
+  title,
+  author,
+  price,
+  categoryId,
+  categorySlug,
+  specifications,
+  image,
+}) => {
+  const { data } = await $host.post("products", {
+    title,
+    author,
+    price,
+    categoryId,
+    categorySlug,
+    specifications,
+    image,
+  });
+  return data;
+};

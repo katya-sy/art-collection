@@ -5,6 +5,7 @@ import { Select } from "./UI/Select";
 import { FileInput } from "./UI/FileInput";
 import { Button } from "./UI/Button";
 import { useCategoryStore } from "../store";
+import { createProduct } from "../http/productAPI";
 
 export const ProductCreateForm = () => {
   const [files, setFiles] = useState([]);
@@ -24,9 +25,35 @@ export const ProductCreateForm = () => {
     console.log("categories", categories);
   }, [categoriesFromStore]);
 
+  const stringToObject = (str) => {
+    let obj = {};
+    const pairs = str.split(";");
+
+    pairs.forEach((pair) => {
+      const keyValue = pair.split(":");
+      const key = keyValue[0].trim();
+      const value = keyValue[1].trim();
+      obj[key] = value;
+    });
+
+    return obj;
+  };
+
   const onSubmit = (data) => {
     data = { ...data, files: files };
-    console.log(data);
+
+    const productData = {
+      title: data.title,
+      author: data.author,
+      price: data.price,
+      categoryId: data.category.split(",")[0],
+      categorySlug: data.category.split(",")[1],
+      specifications: stringToObject(data.characteristic),
+      image: data.image,
+    };
+
+    console.log(productData);
+    createProduct({ ...productData });
     reset();
   };
 
@@ -88,7 +115,13 @@ export const ProductCreateForm = () => {
           aria-invalid={errors.characteristic}
           error={errors.characteristic}
         />
-        <FileInput files={files} setFiles={setFiles} />
+        <Input
+          register={register("image")}
+          placeholder={"Ссылка на изображение"}
+          aria-invalid={errors.image}
+          error={errors.image}
+        />
+        {/* <FileInput files={files} setFiles={setFiles} /> */}
       </div>
       <div className="flex-20 btns">
         <Button type="submit">Сохранить</Button>

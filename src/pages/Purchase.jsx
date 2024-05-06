@@ -208,7 +208,7 @@ export const Purchase = () => {
                     <img src={product?.image} alt={product?.title} />
                   </picture>
                   <h3>
-                    {product?.price.toLocaleString("ru-RU", {
+                    {Number(product?.price).toLocaleString("ru-RU", {
                       style: "currency",
                       currency: "RUB",
                       minimumFractionDigits: 0,
@@ -229,11 +229,14 @@ export const Purchase = () => {
               <div className="grid-2 grid-2-nwr">
                 <h3>Итого</h3>
                 <h2 className="c-purple">
-                  {(product?.price + delieveryPrice).toLocaleString("ru-RU", {
-                    style: "currency",
-                    currency: "RUB",
-                    minimumFractionDigits: 0,
-                  })}
+                  {(Number(product?.price) + delieveryPrice).toLocaleString(
+                    "ru-RU",
+                    {
+                      style: "currency",
+                      currency: "RUB",
+                      minimumFractionDigits: 0,
+                    }
+                  )}
                 </h2>
               </div>
               <button type="submit" className="btn">

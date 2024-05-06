@@ -17,7 +17,7 @@ export const ProductItem = ({ img, title, author, price, id }) => {
           <h5 className="c-grey">{author}</h5>
         </div>
         <h4 className="c-purple">
-          {price.toLocaleString("ru-RU", {
+          {Number(price).toLocaleString("ru-RU", {
             style: "currency",
             currency: "RUB",
             minimumFractionDigits: 0,
