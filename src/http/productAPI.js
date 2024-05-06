@@ -45,3 +45,8 @@ export const createCategory = async ({ name, slug }) => {
   });
   return data;
 };
+
+export const deleteCategory = async (id) => {
+  const { data } = await $host.delete(`categories/${id}`);
+  return data;
+};

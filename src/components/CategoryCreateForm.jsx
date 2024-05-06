@@ -20,13 +20,15 @@ export const CategoryCreateForm = () => {
     createCategory({ ...data });
     reset();
 
-    const fetchData = async () => {
-      const data = await getAllCategories();
-      updateCategories(data);
-      console.log(data);
-    };
+    setTimeout(() => {
+      const fetchData = async () => {
+        const data = await getAllCategories();
+        updateCategories(data);
+        console.log(data);
+      };
 
-    fetchData();
+      fetchData();
+    }, 1000);
   };
 
   const resetForm = () => {

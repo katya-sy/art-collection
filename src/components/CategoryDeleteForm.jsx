@@ -4,11 +4,13 @@ import { Button } from "./UI/Button";
 import { Select } from "./UI/Select";
 import { useCategoryStore } from "../store";
 import { useEffect, useState } from "react";
+import { deleteCategory, getAllCategories } from "../http/productAPI";
 
 export const CategoryDeleteForm = () => {
   const { register, handleSubmit, reset, clearErrors } = useForm();
   const categoriesFromStore = useCategoryStore((state) => state.categories);
   const [categories, setCategories] = useState(categoriesFromStore);
+  const updateCategories = useCategoryStore((state) => state.updateCategories);
 
   useEffect(() => {
     setCategories(categoriesFromStore);
@@ -18,7 +20,18 @@ export const CategoryDeleteForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    deleteCategory(data.category.split(",")[0]);
     reset();
+
+    setTimeout(() => {
+      const fetchData = async () => {
+        const data = await getAllCategories();
+        updateCategories(data);
+        console.log(data);
+      };
+
+      fetchData();
+    }, 1000);
   };
 
   const resetForm = () => {
